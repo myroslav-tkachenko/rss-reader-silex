@@ -21,4 +21,15 @@ class SourceMapper extends Mapper
 
         return $results;
     }
+
+    public function save(SourceEntity $source)
+    {
+
+        $qb = $this->db->createQueryBuilder();
+        // $result = $qb->execute();
+
+        if (! $result) {
+            throw new Exception("Can not save SourceEntity");
+        }
+    }
 }

@@ -23,16 +23,20 @@ class Cabinet
         return include '../templates/cabinet.tpl.php';
     }
 
-    // public function postAddItem($request, $response)
-    // {
-    //     $logged = $request->getSession()->get('logged');
-    //     if ($logged) {
-    //         $response->setContent('CABINET');
-    //     } else {
-    //         $response->setStatusCode('403');
-    //         $response->setContent('Forbidden.');
-    //     }
+    public function postAddSource(Application $app, Request $request)
+    {
+        $logged = $request->getSession()->get('logged');
 
-    //     return $response;
-    // }
+        if (! $logged) $app->abort(403, 'Forbidden.');
+
+        $data = $request->request->all();
+        $source = new SourceEntity($data);
+
+        var_dump($source); die();
+
+        // $mapper = new SourceMapper($app['db']);
+        // $sources = $mapper->getSources();
+
+        return $response;
+    }
 }

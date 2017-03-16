@@ -26,17 +26,18 @@
 
                 <?php foreach ($sources as $source) : ?>
                 <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                <?=$source->getId()?>
-                                <b><?=$source->getName()?></b>:
-                                <a href="<?=$item->getLink()?>" target="_blank">
-                                    <?=$item->getTitle()?>
-                                </a>
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <?=$item->getDescription()?>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <?=$source->getId()?>
+                            <a href="<?=$item->getSourceLink()?>" target="_blank">
+                                <?=$item->getName()?>
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="<?=$item->getRssFeedLink()?>" target="_blank">
+                            <?=$item->getRssFeedLink()?>
+                        </a>
                         </div>
                 </div>
                 <?php endforeach; ?>
@@ -53,27 +54,26 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                
                     <form action="/cabinet" method="POST" class="form-horizontal" role="form">
                         
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" id="name" class="form-control" value="" required="required" pattern="" title="">
+                                <input type="text" name="name" id="name" class="form-control" value="" required="required" title="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="source_link" class="col-sm-2 control-label">Source Link:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="source_link" id="source_link" class="form-control" value="" required="required" pattern="" title="">
+                                <input type="text" name="source_link" id="source_link" class="form-control" value="" required="required" title="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="rss_feed_link" class="col-sm-2 control-label">RSS Feed Link:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="rss_feed_link" id="rss_feed_link" class="form-control" value="" required="required" pattern="" title="">
+                                <input type="text" name="rss_feed_link" id="rss_feed_link" class="form-control" value="" required="required" title="">
                             </div>
                         </div>
 
@@ -82,6 +82,7 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
