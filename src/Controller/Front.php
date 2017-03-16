@@ -6,13 +6,16 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Model\NewsMapper;
+use App\Model\NewsEntity;
+
 class Front
 {
     public function getIndex(Application $app, Request $request)
     {
-        $db = $app['db'];
-        $stmt = $db->query("SELECT * FROM news ORDER BY id DESC LIMIT 50");
-        $items = $stmt->fetchAll();
+        $mapper = new NewsMapper($app['db']);
+        $mapper->getNews();
+        die();
 
         return include '../templates/index.tpl.php';
     }

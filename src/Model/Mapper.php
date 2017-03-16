@@ -4,7 +4,7 @@ namespace App\Model;
 
 abstract class Mapper
 {
-    private $db;
+    protected $db;
 
     public function __construct($db)
     {
