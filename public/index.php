@@ -6,6 +6,16 @@ $app = new Silex\Application;
 $app['debug'] = true;
 
 $app->register(new Silex\Provider\SessionServiceProvider());
+$app->register(new DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'dbname' => 'rss_news',
+        'user' => 'root',
+        'password' => '123',
+        'charset'   => 'utf8mb4',
+    ),
+));
 
 $app->get('/', 'App\Controller\Front::getIndex');
 $app->get('/login', 'App\Controller\Front::getLogin');

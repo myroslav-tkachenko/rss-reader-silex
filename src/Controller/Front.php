@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Silex\Application;
 use \PDO;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,7 @@ class Front
         $stmt->execute();
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $response = new Response;
-        $response->setContent(include '../templates/index.tpl.php');
-        return $response;
+        return include '../templates/index.tpl.php';
     }
     
     public function getLogin(Request $request)
@@ -31,7 +30,7 @@ class Front
         </form>');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(Application $app, Request $request)
     {
         $login = $request->request->get('name');
         $pass = $request->request->get('pass');
@@ -40,11 +39,11 @@ class Front
         if ($login == 'test' && $pass == '123') {
             $session->set('logged', true);
 
-            return new Response('LOGGED');
+            return 'LOGGED';
             // return new RedirectResponse('/cabinet');
         }
 
-        return new RedirectResponse('/login');
+        return $app->redirect('/login');
     }
 
     public function getLogout($request, $response)
