@@ -32,11 +32,9 @@ class Cabinet
         $data = $request->request->all();
         $source = new SourceEntity($data);
 
-        var_dump($source); die();
+        $mapper = new SourceMapper($app['db']);
+        $mapper->save($source);
 
-        // $mapper = new SourceMapper($app['db']);
-        // $sources = $mapper->getSources();
-
-        return $response;
+        return $app->redirect('/cabinet');
     }
 }

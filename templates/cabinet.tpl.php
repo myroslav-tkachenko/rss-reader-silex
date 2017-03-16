@@ -29,14 +29,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <?=$source->getId()?>
-                            <a href="<?=$item->getSourceLink()?>" target="_blank">
-                                <?=$item->getName()?>
+                            <a href="<?=$source->getSourceLink()?>" target="_blank">
+                                <?=$source->getName()?>
                             </a>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <a href="<?=$item->getRssFeedLink()?>" target="_blank">
-                            <?=$item->getRssFeedLink()?>
+                        <a href="<?=$source->getRssFeedLink()?>" target="_blank">
+                            <?=$source->getRssFeedLink()?>
                         </a>
                         </div>
                 </div>

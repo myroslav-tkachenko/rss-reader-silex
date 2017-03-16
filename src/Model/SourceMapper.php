@@ -24,12 +24,20 @@ class SourceMapper extends Mapper
 
     public function save(SourceEntity $source)
     {
-
         $qb = $this->db->createQueryBuilder();
-        // $result = $qb->execute();
+        $qb->insert('sources')
+            ->setValue('name', '?')
+            ->setValue('source_link', '?')
+            ->setValue('rss_feed_link', '?')
+            ->setParameter(0, $source->getName())
+            ->setParameter(1, $source->getSourceLink())
+            ->setParameter(2, $source->getRssFeedLink());
+        $result = $qb->execute();
 
         if (! $result) {
             throw new Exception("Can not save SourceEntity");
         }
+
+        return $result;
     }
 }
