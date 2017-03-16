@@ -11,13 +11,16 @@ use App\Model\SourceEntity;
 
 class Cabinet
 {
-    public function getIndex(Request $request)
+    public function getIndex(Application $app, Request $request)
     {
         $logged = $request->getSession()->get('logged');
 
-        if ($logged) return 'CABINET';
+        if (! $logged) $app->abort(403, 'Forbidden.');
 
-        return new Response('Forbidden.', '403');
+        $mapper = new SourceMapper($app['db']);
+        $sources = $mapper->getSources();
+
+        return include '../templates/cabinet.tpl.php';
     }
 
     // public function postAddItem($request, $response)
