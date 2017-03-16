@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class TicketEntity
+class NewsEntity
 {
     protected $id;
     protected $title;
