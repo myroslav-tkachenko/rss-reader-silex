@@ -14,7 +14,7 @@ class Front
     public function getIndex(Application $app, Request $request)
     {
         $mapper = new NewsMapper($app['db']);
-        $mapper->getNews();
+        $items = $mapper->getNews();
 
         return include '../templates/index.tpl.php';
     }

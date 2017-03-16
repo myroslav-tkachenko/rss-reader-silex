@@ -13,9 +13,9 @@ class NewsMapper extends Mapper
 
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results = new NewsEntity($row);
+            $results[] = new NewsEntity($row);
         }
-        
+
         return $results;
     }
 }

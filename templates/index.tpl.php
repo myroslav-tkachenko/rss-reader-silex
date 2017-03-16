@@ -26,15 +26,15 @@
             <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <?=$item['id']?>
-                            <b><?=$item['pub_date']?></b>:
-                            <a href="<?=$item['link']?>" target="_blank">
-                                <?=$item['title']?>
+                            <?=$item->getId()?>
+                            <b><?=$item->getPubDate()?></b>:
+                            <a href="<?=$item->getLink()?>" target="_blank">
+                                <?=$item->getTitle()?>
                             </a>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <?=$item['description']?>
+                        <?=$item->getDescription()?>
                     </div>
             </div>
             <?php endforeach; ?>
