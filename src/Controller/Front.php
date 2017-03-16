@@ -15,7 +15,6 @@ class Front
     {
         $mapper = new NewsMapper($app['db']);
         $mapper->getNews();
-        die();
 
         return include '../templates/index.tpl.php';
     }

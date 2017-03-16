@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model\Mapper;
+use App\Model\NewsEntity;
 
 class NewsMapper extends Mapper
 {
