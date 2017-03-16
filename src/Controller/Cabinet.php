@@ -2,23 +2,19 @@
 
 namespace App\Controller;
 
-use \PDO;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class Cabinet
 {
-    public function getIndex($request, $response)
+    public function getIndex(Request $request)
     {
         $logged = $request->getSession()->get('logged');
-        if ($logged) {
+        
+        if ($logged) return 'CABINET';
 
-            $response->setContent('CABINET');
-        } else {
-            $response->setStatusCode('403');
-            $response->setContent('Forbidden.');
-        }
-
-        return $response;
+        return new Response('Forbidden.', '403');
     }
 
     // public function postAddItem($request, $response)

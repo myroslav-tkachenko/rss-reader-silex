@@ -20,7 +20,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 $app->get('/', 'App\Controller\Front::getIndex');
 $app->get('/login', 'App\Controller\Front::getLogin');
 $app->post('/login', 'App\Controller\Front::postLogin');
-$app->get('/logout', 'App\Controller\Front::getLogin');
-$app->get('/cabinet', 'App\Controller\Front::getCabinet');
+$app->get('/logout', 'App\Controller\Front::getLogout');
+$app->get('/cabinet', 'App\Controller\Cabinet::getIndex');
 
 $app->run();
