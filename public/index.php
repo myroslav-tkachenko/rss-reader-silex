@@ -6,7 +6,7 @@ $app = new Silex\Application;
 $app['debug'] = true;
 
 $app->register(new Silex\Provider\SessionServiceProvider());
-$app->register(new DoctrineServiceProvider(), array(
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',

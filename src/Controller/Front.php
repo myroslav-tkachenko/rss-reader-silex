@@ -10,12 +10,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class Front
 {
-    public function getIndex(Request $request)
+    public function getIndex(Application $app, Request $request)
     {
-        $db = new PDO("mysql:host=localhost;dbname=rss_news;charset=utf8", "root", "123");
-        $sql = "SELECT * FROM news ORDER BY id DESC LIMIT 50";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
+        $db = $app['db'];
+        $stmt = $db->query("SELECT * FROM news ORDER BY id DESC LIMIT 50");
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return include '../templates/index.tpl.php';
