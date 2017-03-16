@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use Silex\Application;
-use \PDO;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class Front
 {
@@ -14,7 +12,7 @@ class Front
     {
         $db = $app['db'];
         $stmt = $db->query("SELECT * FROM news ORDER BY id DESC LIMIT 50");
-        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $items = $stmt->fetchAll();
 
         return include '../templates/index.tpl.php';
     }
