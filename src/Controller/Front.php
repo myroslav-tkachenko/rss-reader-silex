@@ -24,7 +24,7 @@ class Front
     
     public function getLogin(Request $request)
     {
-        return $response->setContent('<form action="/login" method="POST">
+        return new Response('<form action="/login" method="POST">
             <input name="name">
             <input name="pass">
             <input type="submit">
