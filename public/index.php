@@ -27,5 +27,5 @@ $app->post('/cabinet/toggle/{id}', 'App\Controller\Cabinet::postDisableSource')
     ->before('App\Controller\Cabinet::_before');
 $app->post('/cabinet', 'App\Controller\Cabinet::postAddSource')
     ->before('App\Controller\Cabinet::_before');
-    
+
 $app->run();
