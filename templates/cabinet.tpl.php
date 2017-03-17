@@ -41,11 +41,11 @@
                         <form action="/cabinet/toggle/<?=$source->getId()?>" method="POST" class="pull-right">
                             <input type="hidden" value="<?=abs($source->isActive() - 1)?>">
                             <?php if($source->isActive()): ?>
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     Disable
                                 </button>
                             <?php else: ?>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-default">
                                     Enable
                                 </button>
                             <?php endif; ?>

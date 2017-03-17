@@ -47,4 +47,5 @@ class SourceEntity
     {
         return $this->is_active;
     }
+
 }

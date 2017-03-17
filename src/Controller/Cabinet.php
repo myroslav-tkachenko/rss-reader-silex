@@ -45,9 +45,12 @@ class Cabinet
         if (! $logged) $app->abort(403, 'Forbidden.');        
 
         $mapper = new SourceMapper($app['db']);
-        $source = $mapper->getSourceById($id);
+        $data = $mapper->getSourceById($id);
+        $data['is_active'] = ! $data['is_active'];
 
-        var_dump($source); die();
+        $source = new SourceEntity($data);
+        $mapper->save($source);
 
+        return $app->redirect('/cabinet');
     }
 }

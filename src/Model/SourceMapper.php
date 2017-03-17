@@ -40,25 +40,32 @@ class SourceMapper extends Mapper
         $qb = $this->db->createQueryBuilder();
 
         if ($source->getId()) {
-            $qb->update('sources')->where('id = ' . $source->getId());
+            $qb->update('sources')
+                ->set('name', '?')
+                ->set('source_link', '?')
+                ->set('rss_feed_link', '?')
+                ->set('is_active', '?');
         } else {
-            $qb->insert('sources');
+            $qb->insert('sources')
+                ->setValue('name', '?')
+                ->setValue('source_link', '?')
+                ->setValue('rss_feed_link', '?')
+                ->setValue('is_active', '?');
         }
 
-        $qb->setValue('name', '?')
-            ->setValue('source_link', '?')
-            ->setValue('rss_feed_link', '?')
-            ->setValue('is_active', '?')
-            ->setParameter(0, $source->getName())
+        $qb->setParameter(0, $source->getName())
             ->setParameter(1, $source->getSourceLink())
             ->setParameter(2, $source->getRssFeedLink())
             ->setParameter(3, $source->isActive());
 
+        if ($source->getId()) {
+            $qb->where('id = ' . $source->getId());
+        }
 
         $result = $qb->execute();
 
         if (! $result) {
-            throw new Exception("Can not save SourceEntity");
+            throw new \Exception("Can not save SourceEntity");
         }
 
         return $result;
