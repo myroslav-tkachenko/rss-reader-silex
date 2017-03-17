@@ -16,6 +16,8 @@ class Front
         $mapper = new NewsMapper($app['db']);
         $items = $mapper->getNews();
 
+        $logged = $request->getSession()->get('logged');
+
         return include '../templates/index.tpl.php';
     }
     
@@ -45,6 +47,7 @@ class Front
     public function getLogout(Application $app, Request $request)
     {
         $session = $request->getSession();
+        $session->clear();
         $session->invalidate();
 
         return $app->redirect('/');

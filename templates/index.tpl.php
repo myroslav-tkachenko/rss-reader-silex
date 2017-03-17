@@ -18,7 +18,10 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center">My News Feed</h1>
+            <h1 class="text-center">
+                My News Feed
+                <?php if ($logged) echo '<b>LOGGED</b>'; else echo '<b>NOT LOGGED</b>'; ?>
+            </h1>
 
             <hr>
 
