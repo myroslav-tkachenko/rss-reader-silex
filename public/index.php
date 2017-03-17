@@ -16,6 +16,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'charset'   => 'utf8mb4',
     ),
 ));
+$app->register(new App\Service\ViewServiceProvider());
 
 $app->get('/', 'App\Controller\Front::getIndex');
 $app->get('/login', 'App\Controller\Front::getLogin');

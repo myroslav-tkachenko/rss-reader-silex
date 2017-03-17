@@ -17,7 +17,9 @@ class Front
 
         $logged = $request->getSession()->get('logged');
 
-        return include '../templates/index.tpl.php';
+        $app['view.name'] = 'index';
+        return $app['view']->data(['items' => $items, 'logged' => $logged])->render();
+        // return include '../templates/index.tpl.php';
     }
     
     public function getLogin(Request $request)
