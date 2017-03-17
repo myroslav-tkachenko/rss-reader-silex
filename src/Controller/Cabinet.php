@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use App\Model\SourceMapper;
 use App\Model\SourceEntity;
