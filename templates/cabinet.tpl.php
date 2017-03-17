@@ -38,6 +38,18 @@
                         <a href="<?=$source->getRssFeedLink()?>" target="_blank">
                             <?=$source->getRssFeedLink()?>
                         </a>
+                        <form action="/cabinet/toggle/<?=$source->getId()?>" method="POST" class="pull-right">
+                            <input type="hidden" value="<?=abs($source->isActive() - 1)?>">
+                            <?php if($source->isActive()): ?>
+                                <button type="submit" class="btn btn-default">
+                                    Disable
+                                </button>
+                            <?php else: ?>
+                                <button type="submit" class="btn btn-primary">
+                                    Enable
+                                </button>
+                            <?php endif; ?>
+                        </form>
                         </div>
                 </div>
                 <?php endforeach; ?>

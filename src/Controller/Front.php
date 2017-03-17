@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use App\Model\NewsMapper;
 use App\Model\NewsEntity;
@@ -23,11 +22,7 @@ class Front
     
     public function getLogin(Request $request)
     {
-        return '<form action="/login" method="POST">
-            <input name="name">
-            <input name="pass">
-            <input type="submit">
-        </form>';
+        return include '../templates/login.tpl.php';
     }
 
     public function postLogin(Application $app, Request $request)

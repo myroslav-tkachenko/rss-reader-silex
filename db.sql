@@ -30,3 +30,6 @@ CREATE TABLE `sources` (
   `source_link` varchar(255) NOT NULL,
   `rss_feed_link` varchar(255) NOT NULL
 ) ENGINE='InnoDB';
+
+# alter table: add column
+ALTER TABLE `sources` ADD `is_active` BOOLEAN NOT NULL DEFAULT true;

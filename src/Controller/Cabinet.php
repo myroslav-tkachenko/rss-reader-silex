@@ -37,4 +37,17 @@ class Cabinet
 
         return $app->redirect('/cabinet');
     }
+
+    public function postDisableSource(Application $app, Request $request, $id)
+    {
+        $logged = $request->getSession()->get('logged');
+
+        if (! $logged) $app->abort(403, 'Forbidden.');        
+
+        $mapper = new SourceMapper($app['db']);
+        $source = $mapper->getSourceById($id);
+
+        var_dump($source); die();
+
+    }
 }
