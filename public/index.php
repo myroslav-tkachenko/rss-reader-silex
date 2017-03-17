@@ -21,8 +21,11 @@ $app->get('/', 'App\Controller\Front::getIndex');
 $app->get('/login', 'App\Controller\Front::getLogin');
 $app->post('/login', 'App\Controller\Front::postLogin');
 $app->get('/logout', 'App\Controller\Front::getLogout');
-$app->get('/cabinet', 'App\Controller\Cabinet::getIndex');
-$app->post('/cabinet/toggle/{id}', 'App\Controller\Cabinet::postDisableSource');
-$app->post('/cabinet', 'App\Controller\Cabinet::postAddSource');
-
+$app->get('/cabinet', 'App\Controller\Cabinet::getIndex')
+    ->before('App\Controller\Cabinet::_before');
+$app->post('/cabinet/toggle/{id}', 'App\Controller\Cabinet::postDisableSource')
+    ->before('App\Controller\Cabinet::_before');
+$app->post('/cabinet', 'App\Controller\Cabinet::postAddSource')
+    ->before('App\Controller\Cabinet::_before');
+    
 $app->run();

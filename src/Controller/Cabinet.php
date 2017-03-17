@@ -11,24 +11,22 @@ use App\Model\SourceEntity;
 
 class Cabinet
 {
-    public function getIndex(Application $app, Request $request)
+    public static function _before(Request $request, Application $app)
     {
         $logged = $request->getSession()->get('logged');
-
         if (! $logged) $app->abort(403, 'Forbidden.');
+    }
 
+    public function getIndex(Request $request, Application $app)
+    {
         $mapper = new SourceMapper($app['db']);
         $sources = $mapper->getSources();
 
         return include '../templates/cabinet.tpl.php';
     }
 
-    public function postAddSource(Application $app, Request $request)
+    public function postAddSource(Request $request, Application $app)
     {
-        $logged = $request->getSession()->get('logged');
-
-        if (! $logged) $app->abort(403, 'Forbidden.');
-
         $data = $request->request->all();
         $source = new SourceEntity($data);
 
@@ -38,12 +36,8 @@ class Cabinet
         return $app->redirect('/cabinet');
     }
 
-    public function postDisableSource(Application $app, Request $request, $id)
+    public function postDisableSource(Request $request, $id, Application $app)
     {
-        $logged = $request->getSession()->get('logged');
-
-        if (! $logged) $app->abort(403, 'Forbidden.');        
-
         $mapper = new SourceMapper($app['db']);
         $data = $mapper->getSourceById($id);
         $data['is_active'] = ! $data['is_active'];
