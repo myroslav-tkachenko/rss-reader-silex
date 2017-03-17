@@ -36,7 +36,7 @@ class Cabinet
         return $app->redirect('/cabinet');
     }
 
-    public function postDisableSource(Request $request, $id, Application $app)
+    public function postDisableSource(Request $request, Application $app, $id)
     {
         $mapper = new SourceMapper($app['db']);
         $data = $mapper->getSourceById($id);

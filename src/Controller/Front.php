@@ -10,7 +10,7 @@ use App\Model\NewsEntity;
 
 class Front
 {
-    public function getIndex(Application $app, Request $request)
+    public function getIndex(Request $request, Application $app)
     {
         $mapper = new NewsMapper($app['db']);
         $items = $mapper->getNews();
@@ -25,7 +25,7 @@ class Front
         return include '../templates/login.tpl.php';
     }
 
-    public function postLogin(Application $app, Request $request)
+    public function postLogin(Request $request, Application $app)
     {
         $login = $request->request->get('name');
         $pass = $request->request->get('pass');
@@ -39,7 +39,7 @@ class Front
         return $app->redirect('/login');
     }
 
-    public function getLogout(Application $app, Request $request)
+    public function getLogout(Request $request, Application $app)
     {
         $session = $request->getSession();
         $session->clear();
