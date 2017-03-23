@@ -6,7 +6,7 @@ abstract class Mapper
 {
     protected $db;
 
-    public function __construct($db)
+    public function __construct(\Doctrine\DBAL\Connection $db)
     {
         $this->db = $db;
     }
