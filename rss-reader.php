@@ -27,14 +27,6 @@ foreach ($sources as $source) {
     if ($source->isActive()) $feed_urls[] = $source->getRssFeedLink();
 }
 
-var_dump($feed_urls); die();
-
-$feed_urls = [
-    'http://www.pravda.com.ua/rss/',
-    'http://football.ua/rss2.ashx',
-    'https://rss.unian.net/site/news_ukr.rss',
-];
-
 $feed = new SimplePie();
 $feed->enable_cache(false);
 // $feed->enable_order_by_date(false);
