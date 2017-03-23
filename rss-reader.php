@@ -2,9 +2,9 @@
 
 require_once 'vendor/autoload.php';
 
-date_default_timezone_set('Europe/Kiev');
-
 use App\Model;
+
+date_default_timezone_set('Europe/Kiev');
 
 $config = new \Doctrine\DBAL\Configuration;
 $connectionParams = array(
@@ -18,11 +18,16 @@ $connectionParams = array(
 
 $db = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
 
-var_dump($db); die();
+$source_mapper = new Model\SourceMapper($db);
+$sources = $source_mapper->getSources();
 
-$sql = "INSERT IGNORE INTO news (title, link, description, source, pub_date) VALUES (?, ?, ?, ?, ?)";
-$stmt = $db->prepare($sql);
+$feed_urls = [];
 
+foreach ($sources as $source) {
+    if ($source->isActive()) $feed_urls[] = $source->getRssFeedLink();
+}
+
+var_dump($feed_urls); die();
 
 $feed_urls = [
     'http://www.pravda.com.ua/rss/',
@@ -38,6 +43,9 @@ $feed->set_feed_url($feed_urls);
 $feed->init();
 
 $items = $feed->get_items();
+
+$sql = "INSERT IGNORE INTO news (title, link, description, source, pub_date) VALUES (?, ?, ?, ?, ?)";
+$stmt = $db->prepare($sql);
 
 foreach ($items as $item) {
     $stmt->execute([
