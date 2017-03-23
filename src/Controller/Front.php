@@ -22,9 +22,10 @@ class Front
         // return include '../templates/index.tpl.php';
     }
     
-    public function getLogin(Request $request)
+    public function getLogin(Request $request, Application $app)
     {
-        return include '../templates/login.tpl.php';
+        $app['view.name'] = 'login';
+        return $app['view']->render();
     }
 
     public function postLogin(Request $request, Application $app)

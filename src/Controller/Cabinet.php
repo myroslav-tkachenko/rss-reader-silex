@@ -21,7 +21,8 @@ class Cabinet
         $mapper = new SourceMapper($app['db']);
         $sources = $mapper->getSources();
 
-        return include '../templates/cabinet.tpl.php';
+        $app['view.name'] = 'cabinet';
+        return $app['view']->data(['sources' => $sources])->render();
     }
 
     public function postAddSource(Request $request, Application $app)

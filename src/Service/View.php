@@ -16,6 +16,7 @@ class View
     {
         $this->view_name = $view_name;
         $this->template = $template ?? 'template';
+        $this->data = [];
     }
 
     public function data(array $data)
