@@ -4,9 +4,25 @@ require_once 'vendor/autoload.php';
 
 date_default_timezone_set('Europe/Kiev');
 
-$db = new PDO("mysql:host=localhost;dbname=rss_news;charset=utf8", "root", "123");
+use App\Model;
+
+$config = new \Doctrine\DBAL\Configuration;
+$connectionParams = array(
+    'driver' => 'pdo_mysql',
+    'host' => 'localhost',
+    'dbname' => 'rss_news',
+    'user' => 'root',
+    'password' => '123',
+    'charset'   => 'utf8mb4',
+);
+
+$db = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
+
+var_dump($db); die();
+
 $sql = "INSERT IGNORE INTO news (title, link, description, source, pub_date) VALUES (?, ?, ?, ?, ?)";
 $stmt = $db->prepare($sql);
+
 
 $feed_urls = [
     'http://www.pravda.com.ua/rss/',
