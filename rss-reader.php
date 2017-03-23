@@ -36,15 +36,16 @@ $feed->init();
 
 $items = $feed->get_items();
 
-$sql = "INSERT IGNORE INTO news (title, link, description, source, pub_date) VALUES (?, ?, ?, ?, ?)";
-$stmt = $db->prepare($sql);
+$news_mapper = new Model\NewsMapper($db);
 
 foreach ($items as $item) {
-    $stmt->execute([
-        $item->get_title(),
-        $item->get_link(),
-        $item->get_description(),
-        $item->get_feed()->get_link(),
-        $item->get_date("Y-m-d H:i:s"),
+    $news = new Model\NewsEntity([
+        'title' => $item->get_title(),
+        'link' => $item->get_link(),
+        'description' => $item->get_description(),
+        'source' => $item->get_feed()->get_link(),
+        'pub_date' => $item->get_date("Y-m-d H:i:s"),
     ]);
+
+    $news_mapper->save($news);
 }

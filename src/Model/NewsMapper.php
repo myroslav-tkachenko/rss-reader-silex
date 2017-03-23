@@ -21,4 +21,18 @@ class NewsMapper extends Mapper
 
         return $results;
     }
+
+    public function save($news)
+    {
+        $sql = "INSERT IGNORE INTO news (title, link, description, source, pub_date) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute([
+            $news->getTitle(),
+            $news->getLink(),
+            $news->getDescription(),
+            $news->getSource(),
+            $news->getPubDate(),
+        ]);
+    }
 }
