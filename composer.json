@@ -4,7 +4,8 @@
     "require": {
         "silex/silex": "^2.0",
         "doctrine/dbal": "~2.2",
-        "simplepie/simplepie": "^1.4"
+        "simplepie/simplepie": "^1.4",
+        "symfony/validator": "^3.2"
     },
     "autoload": {
         "psr-4": {
